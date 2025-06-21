@@ -1,16 +1,18 @@
--- Zeno App Overlay | Executor-Compatible Demo
--- Inspired by Codex UI + Dream Client Web UI Style
--- Features: setflag, setfint, skybox
+-- Zeno Overlay | Executor-Compatible Roblox Script
+-- Author: YourNameHere | GitHub: yourgithub
+-- Inspired by Codex UI & Dream Client web overlays
 
+-- Destroy existing GUI if re-injected
 if game.CoreGui:FindFirstChild("ZenoOverlay") then
     game.CoreGui.ZenoOverlay:Destroy()
 end
 
+-- UI Setup
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.Name = "ZenoOverlay"
 ScreenGui.ResetOnSpawn = false
 
--- UI Frame
+-- Main UI Frame
 local Frame = Instance.new("Frame", ScreenGui)
 Frame.Size = UDim2.new(0, 300, 0, 350)
 Frame.Position = UDim2.new(0.05, 0, 0.1, 0)
@@ -22,22 +24,22 @@ local Title = Instance.new("TextLabel", Frame)
 Title.Size = UDim2.new(1, 0, 0, 40)
 Title.BackgroundTransparency = 1
 Title.Text = "⚡ Zeno Overlay"
-Title.TextColor3 = Color3.fromRGB(0, 162, 255)
+Title.TextColor3 = Color3.fromRGB(0, 162, 255) -- Blue
 Title.Font = Enum.Font.GothamBold
 Title.TextScaled = true
 
--- List Layout
+-- Layout Management
 local List = Instance.new("UIListLayout", Frame)
 List.Padding = UDim.new(0, 6)
 List.SortOrder = Enum.SortOrder.LayoutOrder
 List.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
--- Button Maker
+-- Button Builder
 local function CreateButton(text, callback)
     local Button = Instance.new("TextButton", Frame)
     Button.Size = UDim2.new(0.9, 0, 0, 36)
-    Button.BackgroundColor3 = Color3.fromRGB(0, 136, 255)
-    Button.TextColor3 = Color3.fromRGB(255, 215, 0)
+    Button.BackgroundColor3 = Color3.fromRGB(0, 136, 255) -- Blue
+    Button.TextColor3 = Color3.fromRGB(255, 215, 0)       -- Gold
     Button.Font = Enum.Font.Gotham
     Button.Text = text
     Button.TextScaled = true
@@ -46,7 +48,7 @@ local function CreateButton(text, callback)
     return Button
 end
 
--- Flag Storage
+-- Internal Flag System
 local Flags = {}
 
 -- Functional Buttons
@@ -69,7 +71,7 @@ CreateButton("Skybox: Sunset (ID: 8281961896)", function()
     print("[ZENO] Skybox changed to ID:", id)
 end)
 
-CreateButton("Print Flags", function()
+CreateButton("Print All Flags", function()
     for k, v in pairs(Flags) do
         print("[ZENO FLAG] " .. k .. " = " .. tostring(v))
     end
